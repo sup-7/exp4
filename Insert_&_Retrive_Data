@@ -6,7 +6,7 @@ CREATE DATABASE studentdb;
 USE studentdb;
 
 CREATE TABLE student (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),
     marks INT
 );
@@ -23,11 +23,10 @@ public class Experiment4 {
             Connection con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/studentdb", "root", "root");
             // 3. Insert Data
-            String insertQuery = "INSERT INTO student VALUES (?,?,?)";
+            String insertQuery="INSERT INTO student(name,marks) VALUES (?,?)";
             PreparedStatement ps = con.prepareStatement(insertQuery);
-            ps.setInt(1, 1);
-            ps.setString(2, "Omkar");
-            ps.setInt(3, 85);
+            ps.setString(1, "Omkar");
+            ps.setInt(2, 85);
             ps.executeUpdate();
             System.out.println("Data Inserted Successfully!");
             // 4. Retrieve Data
